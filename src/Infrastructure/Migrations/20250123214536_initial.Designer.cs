@@ -10,11 +10,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Infrastructure.Database.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240811190111_Create_Database")]
-    partial class Create_Database
+    [Migration("20250123214536_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,7 +22,7 @@ namespace Infrastructure.Database.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("public")
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -69,12 +69,12 @@ namespace Infrastructure.Database.Migrations
                         .HasColumnName("user_id");
 
                     b.HasKey("Id")
-                        .HasName("pk_todo_items");
+                        .HasName("pk_todo_item");
 
                     b.HasIndex("UserId")
-                        .HasDatabaseName("ix_todo_items_user_id");
+                        .HasDatabaseName("ix_todo_item_user_id");
 
-                    b.ToTable("todo_items", "public");
+                    b.ToTable("todo_item", "public");
                 });
 
             modelBuilder.Entity("Domain.Users.User", b =>
@@ -105,13 +105,13 @@ namespace Infrastructure.Database.Migrations
                         .HasColumnName("password_hash");
 
                     b.HasKey("Id")
-                        .HasName("pk_users");
+                        .HasName("pk_user");
 
                     b.HasIndex("Email")
                         .IsUnique()
-                        .HasDatabaseName("ix_users_email");
+                        .HasDatabaseName("ix_user_email");
 
-                    b.ToTable("users", "public");
+                    b.ToTable("user", "public");
                 });
 
             modelBuilder.Entity("Domain.Todos.TodoItem", b =>
@@ -121,7 +121,7 @@ namespace Infrastructure.Database.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_todo_items_users_user_id");
+                        .HasConstraintName("fk_todo_item_user_user_id");
                 });
 #pragma warning restore 612, 618
         }
