@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <!--    <PackageReference Include="MediatR.Contracts" />-->
+        <PackageReference Include="Volo.Abp.Autofac" />
+    </ItemGroup>
 
 </Project>

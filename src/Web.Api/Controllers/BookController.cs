@@ -43,6 +43,7 @@ public class BookController : ControllerBase, IBookAppService
         await _bookAppService.DeleteAsync(id);
     }
 
+    [AllowAnonymous]
     [HttpGet]
     public async Task<List<BookDto>> GetAllAsync()
     {

@@ -25,7 +25,7 @@ public class Startup
             .AddApplication()
             .AddPresentation()
             .AddInfrastructure(_configuration);
-        
+
         services.AddApplication<WebApiModule>();
     }
 
@@ -38,9 +38,9 @@ public class Startup
             app.UseSwaggerUI();
             // app.ApplyMigrations();
         }
-        
+
         app.UseRouting();
-        
+
         app.UseHealthChecks("/health", new HealthCheckOptions
         {
             ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse

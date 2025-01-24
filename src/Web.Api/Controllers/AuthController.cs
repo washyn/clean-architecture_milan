@@ -12,14 +12,14 @@ public class AuthController : ControllerBase, IAuthAppService
     {
         _authAppService = authAppService;
     }
-    
+
     [Route("login")]
     [HttpPost]
     public async Task<LoginResultDto> LoginAsync([FromBody] LoginDto loginDto)
     {
         return await _authAppService.LoginAsync(loginDto);
     }
-    
+
     [Route("register")]
     [HttpPost]
     public async Task RegisterAsync([FromBody] RegisterDto registerDto)
