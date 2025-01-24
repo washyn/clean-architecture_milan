@@ -22,7 +22,7 @@ public class BookController : ControllerBase, IBookAppService
     {
         return await _bookAppService.GetAsync(id);
     }
-
+    [AllowAnonymous]
     [HttpPost]
     public async Task CreateAsync([FromBody] CreateUpdateBookDto book)
     {
