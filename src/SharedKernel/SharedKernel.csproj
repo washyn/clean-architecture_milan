@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR.Contracts" />
+    <PackageReference Include="Volo.Abp.Autofac" />
   </ItemGroup>
 
 </Project>
