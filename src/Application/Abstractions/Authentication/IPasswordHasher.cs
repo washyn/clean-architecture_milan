@@ -2,7 +2,7 @@
 
 namespace Application.Abstractions.Authentication;
 
-public interface IPasswordHasher : ITransientDependency
+public interface IPasswordHasher : ISingletonDependency
 {
     string Hash(string password);
 

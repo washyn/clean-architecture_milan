@@ -1,8 +1,10 @@
+using Application.Abstractions.Authentication;
 using Application.Abstractions.Data;
 using Bogus;
 using Bogus.DataSets;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Volo.Abp.DependencyInjection;
 
 namespace DbMigrator;
@@ -10,16 +12,21 @@ namespace DbMigrator;
 public class UserDataSeedContributor : IDataSeedContributor, ITransientDependency
 {
     private readonly IApplicationDbContext _context;
+    private readonly IPasswordHasher passwordHasher;
+    private readonly ILogger<UserDataSeedContributor> logger;
 
-    public UserDataSeedContributor(IApplicationDbContext context)
+    public UserDataSeedContributor(IApplicationDbContext context, IPasswordHasher passwordHasher, ILogger<UserDataSeedContributor> logger)
     {
         _context = context;
+        this.passwordHasher = passwordHasher;
+        this.logger = logger;
     }
 
     private const int MaxUsersSeed = 300;
 
     public async Task SeedAsync()
     {
+        logger.LogInformation("Seeding users...");
         var newUsers = GenData();
         var countUsersInDb = await _context.Users.CountAsync();
         if (countUsersInDb < MaxUsersSeed)
@@ -29,6 +36,7 @@ public class UserDataSeedContributor : IDataSeedContributor, ITransientDependenc
                 await SeedUser(identityUser);
             }
         }
+        logger.LogInformation("Users seeded.");
     }
 
     public async Task SeedUser(User user)
@@ -62,7 +70,8 @@ public class UserDataSeedContributor : IDataSeedContributor, ITransientDependenc
                 Email = internet.Email(),
                 FirstName = name.FirstName(),
                 LastName = name.LastName(),
-                PasswordHash = internet.Password()
+                PasswordHash = passwordHasher.Hash(internet.Password())
+                // PasswordHash = internet.Password()
             });
         }
 

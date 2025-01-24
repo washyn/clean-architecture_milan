@@ -46,5 +46,7 @@ public class BookDataSeedContributor : IDataSeedContributor, ITransientDependenc
             Description = "Clean Architecture: A Craftsman's Guide to Software Structure and Design"
         });
         await _context.SaveChangesAsync();
+
+        _logger.LogInformation("Books seeded.");
     }
 }
