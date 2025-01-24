@@ -1,64 +1,44 @@
+###
+
 # curl -X 'POST' 
-#  'http://localhost:5000/users/register' 
+#  'http://localhost:5000/api/auth/register' 
 #  -H 'accept: */*' 
 #  -H 'Content-Type: application/json' 
 #  -d '{
-#  "email": "chester@gmai",
+#  "email": "shin321@gmail.com",
 #  "firstName": "string",
 #  "lastName": "string",
 #  "password": "string"
 #}'
-POST http://localhost:5000/users/register
+POST http://localhost:5000/api/auth/register
 accept: */*
 Content-Type: application/json
 
 {
-  "email": "chester@gmail.com",
-  "firstName": "Washyn",
-  "lastName": "Acero",
-  "password": "12345678"
+  "email": "shin321@gmail.com",
+  "firstName": "string",
+  "lastName": "string",
+  "password": "string"
 }
 
 ###
 
 # curl -X 'POST' 
-#  'http://localhost:5000/todos' 
-#  -H 'accept: */*' 
-#  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYmU0MTViZS1iZTc0LTQ2OGItYWU0ZS02ZGFmZjk0ZjBjOGQiLCJlbWFpbCI6ImNoZXN0ZXJAZ21haWwuY29tIiwiYXVkIjoiZGV2ZWxvcGVycyIsImlzcyI6ImNsZWFuLWFyY2hpdGVjdHVyZSIsImV4cCI6MTczNzY3MjQ2NCwiaWF0IjoxNzM3NjY4ODY0LCJuYmYiOjE3Mzc2Njg4NjR9.f59qOF61KpUsMptExQphsdvpuzn6VGbwvrJSxPGBhW4' 
+#  'http://localhost:5000/api/auth/login' 
+#  -H 'accept: text/plain' 
 #  -H 'Content-Type: application/json' 
 #  -d '{
-#  "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-#  "description": "string",
-#  "dueDate": "2025-01-23T21:48:11.777Z",
-#  "labels": [
-#    "string"
-#  ],
-#  "priority": 0
+#  "email": "string",
+#  "password": "string"
 #}'
-POST http://localhost:5000/todos
-accept: */*
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYmU0MTViZS1iZTc0LTQ2OGItYWU0ZS02ZGFmZjk0ZjBjOGQiLCJlbWFpbCI6ImNoZXN0ZXJAZ21haWwuY29tIiwiYXVkIjoiZGV2ZWxvcGVycyIsImlzcyI6ImNsZWFuLWFyY2hpdGVjdHVyZSIsImV4cCI6MTczNzY3MjQ2NCwiaWF0IjoxNzM3NjY4ODY0LCJuYmYiOjE3Mzc2Njg4NjR9.f59qOF61KpUsMptExQphsdvpuzn6VGbwvrJSxPGBhW4
+POST http://localhost:5000/api/auth/login
+accept: text/plain
 Content-Type: application/json
 
 {
-  "userId": "3be415be-be74-468b-ae4e-6daff94f0c8d",
-  "description": "string",
-  "dueDate": "2025-01-23T21:48:11.777Z",
-  "labels": [
-    "string"
-  ],
-  "priority": 0
+  "email": "shin321@gmail.com",
+  "password": "string"
 }
-
-###
-
-# curl -X 'GET' 
-#  'http://localhost:5000/todos?userId=3be415be-be74-468b-ae4e-6daff94f0c8d' 
-#  -H 'accept: */*' 
-#  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYmU0MTViZS1iZTc0LTQ2OGItYWU0ZS02ZGFmZjk0ZjBjOGQiLCJlbWFpbCI6ImNoZXN0ZXJAZ21haWwuY29tIiwiYXVkIjoiZGV2ZWxvcGVycyIsImlzcyI6ImNsZWFuLWFyY2hpdGVjdHVyZSIsImV4cCI6MTczNzY3MjQ2NCwiaWF0IjoxNzM3NjY4ODY0LCJuYmYiOjE3Mzc2Njg4NjR9.f59qOF61KpUsMptExQphsdvpuzn6VGbwvrJSxPGBhW4'
-GET http://localhost:5000/todos?userId=3be415be-be74-468b-ae4e-6daff94f0c8d
-accept: */*
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYmU0MTViZS1iZTc0LTQ2OGItYWU0ZS02ZGFmZjk0ZjBjOGQiLCJlbWFpbCI6ImNoZXN0ZXJAZ21haWwuY29tIiwiYXVkIjoiZGV2ZWxvcGVycyIsImlzcyI6ImNsZWFuLWFyY2hpdGVjdHVyZSIsImV4cCI6MTczNzY3MjQ2NCwiaWF0IjoxNzM3NjY4ODY0LCJuYmYiOjE3Mzc2Njg4NjR9.f59qOF61KpUsMptExQphsdvpuzn6VGbwvrJSxPGBhW4
 
 ###
 

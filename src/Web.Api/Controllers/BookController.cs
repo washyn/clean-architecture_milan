@@ -1,8 +1,11 @@
 using Application.Books;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Api.Controllers;
 
+[ApiController]
+[Authorize]
 [Route("api/book")]
 public class BookController : ControllerBase, IBookAppService
 {
@@ -21,9 +24,9 @@ public class BookController : ControllerBase, IBookAppService
     }
 
     [HttpPost]
-    public async Task<BookDto> CreateAsync([FromBody] BookDto book)
+    public async Task CreateAsync([FromBody] CreateUpdateBookDto book)
     {
-        return await _bookAppService.CreateAsync(book);
+        await _bookAppService.CreateAsync(book);
     }
 
     [Route("{id}")]

@@ -1,5 +1,4 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +18,7 @@ public class DbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext
                 npgsqlOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Default))
             .UseSnakeCaseNamingConvention();
 
-        return new ApplicationDbContext(builder.Options, new FakePublisher());
+        return new ApplicationDbContext(builder.Options);
     }
 
     private static IConfigurationRoot BuildConfiguration()
@@ -31,18 +30,5 @@ public class DbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext
             ;
 
         return builder.Build();
-    }
-}
-
-internal class FakePublisher : IPublisher
-{
-    public Task Publish(object notification, CancellationToken cancellationToken = new CancellationToken())
-    {
-        return Task.CompletedTask;
-    }
-
-    public Task Publish<TNotification>(TNotification notification, CancellationToken cancellationToken = new CancellationToken()) where TNotification : INotification
-    {
-        return Task.CompletedTask;
     }
 }

@@ -16,7 +16,7 @@ public class Startup
     {
         _configuration = configuration;
     }
-    
+
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddSwaggerGenWithAuth();
@@ -25,11 +25,10 @@ public class Startup
             .AddApplication()
             .AddPresentation()
             .AddInfrastructure(_configuration);
-
-        services.AddEndpoints(Assembly.GetExecutingAssembly());
+        
         services.AddApplication<WebApiModule>();
     }
-    
+
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         // TODO: add mapp endpoint
@@ -39,12 +38,13 @@ public class Startup
             app.UseSwaggerUI();
             // app.ApplyMigrations();
         }
-
-        app.UseHealthChecks("health", new HealthCheckOptions
+        
+        app.UseRouting();
+        
+        app.UseHealthChecks("/health", new HealthCheckOptions
         {
             ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
         });
-
         app.UseRequestContextLogging();
 
         app.UseSerilogRequestLogging();
@@ -58,7 +58,6 @@ public class Startup
         // REMARK: If you want to use Controllers, you'll need this.
         app.UseEndpoints(endpoints =>
         {
-            endpoints.MapRazorPages();
             endpoints.MapControllers();
         });
     }

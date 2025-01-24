@@ -8,7 +8,7 @@ namespace Application.Books;
 public interface IBookAppService : ITransientDependency
 {
     Task<BookDto> GetAsync(Guid id);
-    Task<BookDto> CreateAsync(BookDto book);
+    Task CreateAsync(CreateUpdateBookDto book);
     Task<BookDto> UpdateAsync(Guid id, CreateUpdateBookDto book);
     Task DeleteAsync(Guid id);
     Task<List<BookDto>> GetAllAsync();
@@ -35,7 +35,7 @@ public class BookAppService : IBookAppService
         };
     }
     
-    public async Task<BookDto> CreateAsync(BookDto book)
+    public async Task CreateAsync(CreateUpdateBookDto book)
     {
         _context.Books.Add(new Domain.Books.Book
         {
@@ -44,7 +44,6 @@ public class BookAppService : IBookAppService
             Description = book.Description
         });
         await _context.SaveChangesAsync();
-        return book;
     }
     
     public async Task<BookDto> UpdateAsync(Guid id, CreateUpdateBookDto book)
