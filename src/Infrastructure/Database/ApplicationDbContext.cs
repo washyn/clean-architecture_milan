@@ -4,17 +4,19 @@ using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel;
 
-namespace Infrastructure.Database;
-
-public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-    : DbContext(options), IApplicationDbContext
+namespace Infrastructure.Database
 {
-    public DbSet<Book> Books { get; set; }
-    public DbSet<User> Users { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : DbContext(options), IApplicationDbContext
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-        modelBuilder.HasDefaultSchema(Schemas.Default);
+        public DbSet<Book> Books { get; set; }
+        public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+            modelBuilder.HasDefaultSchema(Schemas.Default);
+        }
     }
 }

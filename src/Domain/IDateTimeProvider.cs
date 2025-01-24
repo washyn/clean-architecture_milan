@@ -1,6 +1,8 @@
-﻿namespace SharedKernel
+﻿using Volo.Abp.DependencyInjection;
+
+namespace SharedKernel
 {
-    public interface IDateTimeProvider
+    public interface IDateTimeProvider : ITransientDependency
     {
         public DateTime UtcNow { get; }
     }

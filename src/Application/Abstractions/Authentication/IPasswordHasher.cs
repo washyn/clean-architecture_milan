@@ -1,6 +1,8 @@
-﻿namespace Application.Abstractions.Authentication;
+﻿using Volo.Abp.DependencyInjection;
 
-public interface IPasswordHasher
+namespace Application.Abstractions.Authentication;
+
+public interface IPasswordHasher : ITransientDependency
 {
     string Hash(string password);
 

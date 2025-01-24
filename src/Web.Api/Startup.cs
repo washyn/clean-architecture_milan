@@ -19,13 +19,6 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddSwaggerGenWithAuth();
-
-        services
-            .AddApplication()
-            .AddPresentation()
-            .AddInfrastructure(_configuration);
-
         services.AddApplication<WebApiModule>();
     }
 
@@ -36,7 +29,6 @@ public class Startup
         {
             app.UseSwagger();
             app.UseSwaggerUI();
-            // app.ApplyMigrations();
         }
 
         app.UseRouting();

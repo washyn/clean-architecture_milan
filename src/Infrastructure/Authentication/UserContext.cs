@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions.Authentication;
 using Microsoft.AspNetCore.Http;
+using Volo.Abp.DependencyInjection;
 
 namespace Infrastructure.Authentication;
 

@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Volo.Abp;
-using Volo.Abp.Autofac;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Modularity;
 

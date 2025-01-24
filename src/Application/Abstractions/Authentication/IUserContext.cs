@@ -1,6 +1,8 @@
-﻿namespace Application.Abstractions.Authentication;
+﻿using Volo.Abp.DependencyInjection;
 
-public interface IUserContext
+namespace Application.Abstractions.Authentication;
+
+public interface IUserContext : ITransientDependency
 {
     Guid UserId { get; }
 }
