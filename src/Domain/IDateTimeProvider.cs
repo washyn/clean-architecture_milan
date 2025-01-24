@@ -1,6 +1,7 @@
-﻿namespace SharedKernel;
-
-public interface IDateTimeProvider
+﻿namespace SharedKernel
 {
-    public DateTime UtcNow { get; }
+    public interface IDateTimeProvider
+    {
+        public DateTime UtcNow { get; }
+    }
 }

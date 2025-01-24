@@ -12,7 +12,7 @@
 <!--    <AnalysisMode>All</AnalysisMode>-->
 <!--    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>-->
 <!--    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>-->
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+<!--    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>-->
   </PropertyGroup>
   <ItemGroup Condition="'$(MSBuildProjectExtension)' != '.dcproj'">
 <!--    <PackageReference Include="SonarAnalyzer.CSharp">-->

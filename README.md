@@ -35,6 +35,8 @@ If you're ready to learn more, check out [**Pragmatic Clean Architecture**](http
 
 Stay awesome!
 
-
 ### TODO:
+
 - Add books crud
+- Add proyect for seed and migrations
+- Fix solution
