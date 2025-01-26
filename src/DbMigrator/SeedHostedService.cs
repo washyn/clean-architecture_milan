@@ -6,20 +6,23 @@ namespace DbMigrator
 {
     public class SeedHostedService : IHostedService
     {
+        private readonly AppDbSchemaMigrator appDbSchemaMigrator;
+        private readonly IDataSeeder dataSeeder;
         private readonly IAbpApplicationWithExternalServiceProvider _application;
         private readonly ILogger<SeedHostedService> _logger;
-        private readonly IEnumerable<IDataSeedContributor> _dataSeedContributors;
         private readonly IServiceProvider _serviceProvider;
 
         public SeedHostedService(
+            AppDbSchemaMigrator appDbSchemaMigrator,
+            IDataSeeder dataSeeder,
             IAbpApplicationWithExternalServiceProvider application,
             ILogger<SeedHostedService> logger,
-            IEnumerable<IDataSeedContributor> dataSeedContributors,
             IServiceProvider serviceProvider)
         {
+            this.appDbSchemaMigrator = appDbSchemaMigrator;
+            this.dataSeeder = dataSeeder;
             _application = application;
             _logger = logger;
-            _dataSeedContributors = dataSeedContributors;
             _serviceProvider = serviceProvider;
         }
 
@@ -29,10 +32,8 @@ namespace DbMigrator
 
             _logger.LogInformation("MyProjectName module is initialized.");
 
-            foreach (var dataSeedContributor in _dataSeedContributors)
-            {
-                await dataSeedContributor.SeedAsync();
-            }
+            await appDbSchemaMigrator.MigrateAsync();
+            await dataSeeder.SeedAsync();
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
